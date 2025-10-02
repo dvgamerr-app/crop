@@ -31,3 +31,159 @@
   display: flex;
   align-items: center;
 }
+
+.largeFileWarning {
+  h3 {
+    color: #fbbf24;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: var(--color-fg-soft);
+    font-size: 0.9rem;
+  }
+
+  strong {
+    color: #fca5a5;
+  }
+
+  a {
+    color: #60a5fa;
+    text-decoration: none;
+    
+    &:hover {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+  }
+}
+
+.commandSection {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: var(--color-bg-soft);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  h4 {
+    margin-bottom: 0.4rem;
+    color: var(--color-fg);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--color-fg-soft);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.commandBox {
+  position: relative;
+  margin: 0.5rem 0;
+  background: #0d0d12;
+  border-radius: 4px;
+  padding: 0.75rem;
+  padding-right: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  pre {
+    color: #34d399;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+}
+
+.copyButton {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: var(--color-interactive);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: #9ca3af;
+  }
+
+  &:hover {
+    background: var(--color-interactive-hover);
+    
+    svg {
+      color: #e5e7eb;
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.instructions {
+  margin: 1rem 0 0 0;
+  padding: 0.75rem;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+
+  h4 {
+    margin-bottom: 0.5rem;
+    color: #60a5fa;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-fg-soft);
+    font-size: 0.85rem;
+
+    li {
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+  }
+
+  a {
+    color: #60a5fa;
+    text-decoration: none;
+    
+    &:hover {
+      color: #93c5fd;
+      text-decoration: underline;
+    }
+  }
+}
+
+.settings {
+  margin-top: 1rem;
+
+  > div {
+    margin-bottom: 0.4rem;
+    color: var(--color-fg-soft);
+    font-size: 0.9rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
