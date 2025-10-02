@@ -9,15 +9,14 @@ import { mainStore } from '../stores/main';
 import { Slider } from '../components/Slider';
 
 export const Render: React.FC = observer(() => {
-  const [outputUrl, setOutputUrl] = useState<string>();
   const [logVisible, setLogVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const { ffmpeg, video, file } = mainStore;
+  const { ffmpeg, video, file, outputUrl } = mainStore;
 
-  // Check if file size exceeds 1.8GB
+  // Check if file size exceeds 2GB
   const fileSizeGB = file ? file.size / (1024 * 1024 * 1024) : 0;
-  const isLargeFile = fileSizeGB > 1.8;
+  const isLargeFile = fileSizeGB > 1.95;
 
   if (!ffmpeg.loaded) {
     return (
@@ -113,7 +112,9 @@ export const Render: React.FC = observer(() => {
   };
 
   const crop = async () => {
-    setOutputUrl(undefined);
+    runInAction(() => {
+      mainStore.outputUrl = undefined;
+    });
 
     const args: string[] = [];
     const filters: string[] = [];
@@ -170,7 +171,9 @@ export const Render: React.FC = observer(() => {
     }
 
     const newFile = await ffmpeg.exec(mainStore.file!, args);
-    setOutputUrl(URL.createObjectURL(newFile));
+    runInAction(() => {
+      mainStore.outputUrl = URL.createObjectURL(newFile);
+    });
   };
 
   // Show ffmpeg command for large files
@@ -198,7 +201,7 @@ export const Render: React.FC = observer(() => {
         <div className={styles.largeFileWarning}>
           <h3>⚠️ File Too Large</h3>
           <p>
-            Your file is <strong>{fileSizeGB.toFixed(2)} GB</strong>, exceeding the 1.8 GB limit.
+            Your file is <strong>{fileSizeGB.toFixed(2)} GB</strong>, exceeding the 2 GB limit.
           </p>
           <p>
             Chrome cannot process large files in memory due to WebAssembly and Memory limitations.
@@ -252,7 +255,7 @@ export const Render: React.FC = observer(() => {
         </>
       ) : (
         <>
-          <div className={styles.settings}>
+          {!outputUrl && (<div className={styles.settings}>
             <div>
               Resolution: {width}px x {height}px
             </div>
@@ -270,6 +273,7 @@ export const Render: React.FC = observer(() => {
               />
             </div>
           </div>
+          )}
           <div className={styles.actions}>
             <button onClick={crop}>
               <span>Render MP4</span>

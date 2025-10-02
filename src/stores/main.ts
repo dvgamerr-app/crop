@@ -171,6 +171,7 @@ class MainStore {
 
   step = 0;
   video: HTMLVideoElement | undefined = undefined;
+  outputUrl: string | undefined = undefined;
 
   constructor() {
     makeAutoObservable(this);
@@ -184,6 +185,7 @@ class MainStore {
 
   reset() {
     this.transform = {};
+    this.outputUrl = undefined;
 
     if (this.video) {
       this.video.pause();
