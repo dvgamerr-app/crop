@@ -25,14 +25,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>,
 );
-
-// Push ads after component mounts
-setTimeout(() => {
-  if (adsenseClient) {
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error('AdSense error:', e);
-    }
-  }
-}, 1000);

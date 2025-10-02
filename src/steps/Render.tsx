@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { observer } from 'mobx-react-lite';
 import { BsDownload, BsClipboard, BsClipboardCheck } from 'react-icons/bs';
@@ -11,11 +11,31 @@ import { Slider } from '../components/Slider';
 export const Render: React.FC = observer(() => {
   const adsenseClient = import.meta.env.VITE_ADSENSE_CLIENT;
   const adsenseSlot = import.meta.env.VITE_ADSENSE_SLOT;
+  const adRef = useRef<HTMLModElement>(null);
 
   const [logVisible, setLogVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const { ffmpeg, video, file, outputUrl } = mainStore;
+
+  useEffect(() => {
+    if (adsenseClient && adsenseSlot && adRef.current && outputUrl) {
+      try {
+        // Wait for the ad container to be visible
+        const checkAndPush = () => {
+          if (adRef.current && adRef.current.offsetWidth > 0) {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        };
+        
+        // Small delay to ensure the container is rendered
+        const timer = setTimeout(checkAndPush, 100);
+        return () => clearTimeout(timer);
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
+    }
+  }, [adsenseClient, adsenseSlot, outputUrl]);
 
   // Check if file size exceeds 2GB
   const fileSizeGB = file ? file.size / (1024 * 1024 * 1024) : 0;
@@ -341,8 +361,10 @@ export const Render: React.FC = observer(() => {
       )}
 
       {/* Google AdSense */}
-      {adsenseClient && adsenseSlot && (
-        <ins className="adsbygoogle"
+      {adsenseClient && adsenseSlot && outputUrl && (
+        <ins 
+          ref={adRef}
+          className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client={adsenseClient}
           data-ad-slot={adsenseSlot}

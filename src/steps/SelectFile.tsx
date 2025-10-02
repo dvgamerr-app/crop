@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BsGithub } from 'react-icons/bs';
 import { observer } from 'mobx-react-lite';
 
@@ -9,6 +9,26 @@ import { PrepareProgress } from '../components/PrepareProgress';
 export const SelectFile: React.FC = observer(() => {
   const adsenseClient = import.meta.env.VITE_ADSENSE_CLIENT;
   const adsenseSlot = import.meta.env.VITE_ADSENSE_SLOT;
+  const adRef = useRef<HTMLModElement>(null);
+
+  useEffect(() => {
+    if (adsenseClient && adsenseSlot && adRef.current) {
+      try {
+        // Wait for the ad container to be visible
+        const checkAndPush = () => {
+          if (adRef.current && adRef.current.offsetWidth > 0) {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        };
+        
+        // Small delay to ensure the container is rendered
+        const timer = setTimeout(checkAndPush, 100);
+        return () => clearTimeout(timer);
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
+    }
+  }, [adsenseClient, adsenseSlot]);
 
   return (
     <div className={styles.step}>
@@ -67,7 +87,9 @@ export const SelectFile: React.FC = observer(() => {
       </div>
       {/* Google AdSense */}
       {adsenseClient && adsenseSlot && (
-        <ins className="adsbygoogle"
+        <ins 
+          ref={adRef}
+          className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client={adsenseClient}
           data-ad-slot={adsenseSlot}
