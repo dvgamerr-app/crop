@@ -137,7 +137,7 @@ class FfmpegStore {
       await this.ffmpeg.exec(['-i', 'input', ...args, 'output.mp4']);
 
       const data = (await this.ffmpeg.readFile('output.mp4')) as Uint8Array;
-      return new File([data.buffer], 'output.mp4', { type: 'video/mp4' });
+      return new File([new Uint8Array(data)], 'output.mp4', { type: 'video/mp4' });
     } finally {
       try {
         await this.ffmpeg.deleteFile('input');
