@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://crop.dvgamerr.app/sitemap.xml
+Host: crop.dvgamerr.app

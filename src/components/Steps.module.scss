@@ -76,8 +76,9 @@
 
     &.current {
       &:after {
-        background: var(--color-fg-soft);
-        color: var(--color-bg);
+        background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(107, 91, 255, 0.4);
       }
     }
   }

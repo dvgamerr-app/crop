@@ -2,7 +2,7 @@
 
 Quick video edits, right in your web browser. Built with React and [ffmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm)
 
-https://crop.mov
+https://crop.dvgamerr.app
 
 - ✔️ Simple UI
 - ✔️ No watermarks

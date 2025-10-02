@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title>crop.dvgamerr.app</title>
+  <desc>Minimal icon representing video crop tool</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B5BFF" />
+      <stop offset="100%" stop-color="#00C2FF" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="48" fill="url(#bg)" />
+  <g fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M176 80h-72a24 24 0 0 0-24 24v72" />
+    <path d="M80 144h72a24 24 0 0 1 24 24v8" />
+    <path d="M112 80v-24" />
+    <path d="M176 144h32" />
+  </g>
+</svg>

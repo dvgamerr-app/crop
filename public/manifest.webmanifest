@@ -1,0 +1,20 @@
+{
+  "name": "crop.dvgamerr.app - ตัดต่อวิดีโอออนไลน์ฟรี",
+  "short_name": "Crop Video",
+  "description": "ครอปและตัดต่อวิดีโอออนไลน์ฟรีบน crop.dvgamerr.app โดยไม่ต้องติดตั้งโปรแกรมและไม่มีลายน้ำ",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "th",
+  "orientation": "any",
+  "categories": ["video", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

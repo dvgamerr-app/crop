@@ -30,16 +30,6 @@ export const SelectFile: React.FC = observer(() => {
             />
             <span>เลือกไฟล์วิดีโอ</span>
           </label>
-          
-          {/* Google AdSense */}
-          {adsenseClient && adsenseSlot && (
-            <ins className="adsbygoogle"
-              style={{ display: 'block' }}
-              data-ad-client={adsenseClient}
-              data-ad-slot={adsenseSlot}
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          )}
         </>
       )}
       <div className={styles.credits}>
@@ -75,6 +65,64 @@ export const SelectFile: React.FC = observer(() => {
           </a>
         </div>
       </div>
+      {/* Google AdSense */}
+      {adsenseClient && adsenseSlot && (
+        <ins className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client={adsenseClient}
+          data-ad-slot={adsenseSlot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      )}
+      <section className={styles.info} id="features" aria-labelledby="features-heading">
+        <h2 id="features-heading">ฟีเจอร์เด่นที่ช่วยให้การตัดต่อวิดีโอเป็นเรื่องง่าย</h2>
+        <p>
+          crop.dvgamerr.app ถูกออกแบบมาสำหรับผู้สร้างคอนเทนต์ที่ต้องการความเร็วและความปลอดภัย ทุกการประมวลผลทำงานภายในเบราว์เซอร์ของคุณ
+          โดยใช้พลังของ ffmpeg.wasm จึงไม่ต้องรออัปโหลดไฟล์ขึ้นเซิร์ฟเวอร์ และไม่มีค่าบริการแอบแฝง
+        </p>
+        <ul className={styles.infoList}>
+          <li>
+            <strong>รองรับไฟล์หลากหลาย</strong>
+            <span>ใช้งานได้กับไฟล์ยอดนิยมอย่าง MP4, MOV, MKV, AVI, WMV, FLV, WebM และอื่นๆ อีกมากมาย</span>
+          </li>
+          <li>
+            <strong>ควบคุมได้ละเอียด</strong>
+            <span>กำหนดสัดส่วนการครอป ปรับมุมมอง หรือปิดเสียงก่อนเรนเดอร์วิดีโอในขั้นตอนเดียว</span>
+          </li>
+          <li>
+            <strong>ออฟไลน์บางส่วน</strong>
+            <span>หลังจากโหลดเครื่องมือแล้ว คุณสามารถตัดต่อได้ต่อเนื่องแม้สัญญาณอินเทอร์เน็ตไม่เสถียร</span>
+          </li>
+          <li>
+            <strong>ใช้งานฟรี 100%</strong>
+            <span>ไม่มีลายน้ำ ไม่มีข้อจำกัดการส่งออก และไม่ต้องสมัครสมาชิก</span>
+          </li>
+        </ul>
+      </section>
+      <section className={styles.faq} id="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">คำถามที่พบบ่อยเกี่ยวกับการตัดต่อวิดีโอออนไลน์</h2>
+        <details>
+          <summary>สามารถตัดต่อวิดีโอออนไลน์ได้ฟรีจริงหรือไม่?</summary>
+          <p>
+            ใช่ คุณสามารถตัดต่อและครอปวิดีโอออนไลน์ได้ฟรี 100% บน crop.dvgamerr.app โดยไฟล์จะประมวลผลในเครื่องของคุณทั้งหมด
+            จึงไม่มีการอัปโหลดหรือเก็บไฟล์ไว้ที่เซิร์ฟเวอร์ภายนอก
+          </p>
+        </details>
+        <details>
+          <summary>เว็บไซต์รองรับไฟล์วิดีโอประเภทใดบ้าง?</summary>
+          <p>
+            เว็บไซต์รองรับไฟล์วิดีโอยอดนิยมแทบทุกชนิด รวมถึง MP4, MOV, MKV, AVI, WMV, FLV, WebM, 3GP และไฟล์กล้องแอ็กชันอย่าง MTS/M2TS
+            คุณสามารถลากไฟล์จากอุปกรณ์ของคุณขึ้นมาใช้งานได้ทันที
+          </p>
+        </details>
+        <details>
+          <summary>ข้อมูลวิดีโอปลอดภัยหรือไม่?</summary>
+          <p>
+            ปลอดภัยแน่นอน เพราะ ffmpeg.wasm จะประมวลผลวิดีโอบนเบราว์เซอร์ของคุณโดยตรง ไม่ต้องส่งไฟล์ขึ้นเซิร์ฟเวอร์ใดๆ
+            เมื่อรีเฟรชหน้าเว็บ ข้อมูลก็จะถูกล้างทันที
+          </p>
+        </details>
+      </section>
     </div>
   );
 });
