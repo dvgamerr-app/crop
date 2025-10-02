@@ -88,8 +88,14 @@ export const Render: React.FC = observer(() => {
       }
     }
 
-    args.push('-c:v', 'libx264');
-    args.push('-preset', 'veryfast');
+    const { reEncode = true } = mainStore.transform;
+    
+    if (reEncode) {
+      args.push('-c:v', 'libx264');
+      args.push('-preset', 'veryfast');
+    } else {
+      args.push('-c:v', 'copy');
+    }
 
     if (mute) {
       args.push('-an');
@@ -161,8 +167,14 @@ export const Render: React.FC = observer(() => {
       }
     }
 
-    args.push('-c:v', 'libx264');
-    args.push('-preset', 'veryfast');
+    const { reEncode = true } = mainStore.transform;
+    
+    if (reEncode) {
+      args.push('-c:v', 'libx264');
+      args.push('-preset', 'veryfast');
+    } else {
+      args.push('-c:v', 'copy');
+    }
 
     if (mute) {
       args.push('-an');
@@ -196,6 +208,20 @@ export const Render: React.FC = observer(() => {
                 });
               }}
             />
+          </div>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                checked={mainStore.transform.reEncode ?? true}
+                onChange={e => {
+                  runInAction(() => {
+                    mainStore.transform.reEncode = e.target.checked;
+                  });
+                }}
+              />
+              <span> Re-encode video (libx264) - Uncheck to copy codec (faster, larger file)</span>
+            </label>
           </div>
         </div>
         <div className={styles.largeFileWarning}>
@@ -271,6 +297,20 @@ export const Render: React.FC = observer(() => {
                   });
                 }}
               />
+            </div>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={mainStore.transform.reEncode ?? true}
+                  onChange={e => {
+                    runInAction(() => {
+                      mainStore.transform.reEncode = e.target.checked;
+                    });
+                  }}
+                />
+                <span> Re-encode video (libx264) - Uncheck to copy codec (faster, larger file)</span>
+              </label>
             </div>
           </div>
           )}

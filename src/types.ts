@@ -8,6 +8,7 @@ export interface VideoTransform {
   flipH?: boolean;
   flipV?: boolean;
   scale?: number;
+  reEncode?: boolean;
 }
 
 /**
