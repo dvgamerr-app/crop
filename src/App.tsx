@@ -14,7 +14,7 @@ export const App: React.FC = observer(() => {
 
   return (
     <div className="app">
-      <h1>crop.mov</h1>
+      <h1>ตัดต่อวิดีโอ</h1>
       <Steps
         current={step}
         onChange={step => {
@@ -22,7 +22,7 @@ export const App: React.FC = observer(() => {
             mainStore.step = step;
           });
         }}
-        steps={['Select file', 'Crop', 'Render']}
+        steps={['เลือกไฟล์', 'ตัดต่อ', 'ส่งออก']}
       />
 
       {step === 0 && <SelectFile />}

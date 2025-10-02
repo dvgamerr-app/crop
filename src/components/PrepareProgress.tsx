@@ -24,11 +24,11 @@ export const PrepareProgress: React.FC = observer(() => {
               });
             }}
           >
-            <span>Cancel</span>
+            <span>ยกเลิก</span>
           </button>
         </div>
         <div className={styles.info}>
-          <span>Preparing video preview - loading FFMpeg</span>
+          <span>กำลังเตรียมพรีวิววิดีโอ - โหลด FFMpeg</span>
           <progress value={ffmpeg.loadProgress} max={1} />
         </div>
       </div>
@@ -47,11 +47,11 @@ export const PrepareProgress: React.FC = observer(() => {
               });
             }}
           >
-            <span>Cancel</span>
+            <span>ยกเลิก</span>
           </button>
         </div>
         <div className={styles.info}>
-          <span>Preparing video preview - remuxing</span>
+          <span>กำลังเตรียมพรีวิววิดีโอ - ประมวลผล</span>
           <progress value={ffmpeg.execProgress} max={1} />
           <pre>{ffmpeg.output}</pre>
         </div>
@@ -59,5 +59,5 @@ export const PrepareProgress: React.FC = observer(() => {
     );
   }
 
-  return <div className={styles.loading}>Loading...</div>;
+  return <div className={styles.loading}>กำลังโหลด...</div>;
 });

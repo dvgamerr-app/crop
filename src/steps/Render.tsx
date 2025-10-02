@@ -9,6 +9,9 @@ import { mainStore } from '../stores/main';
 import { Slider } from '../components/Slider';
 
 export const Render: React.FC = observer(() => {
+  const adsenseClient = import.meta.env.VITE_ADSENSE_CLIENT;
+  const adsenseSlot = import.meta.env.VITE_ADSENSE_SLOT;
+
   const [logVisible, setLogVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -21,7 +24,7 @@ export const Render: React.FC = observer(() => {
   if (!ffmpeg.loaded) {
     return (
       <div className={styles.loading}>
-        <span>FFmpeg is loading... please wait!</span>
+        <span>กำลังโหลด FFmpeg... กรุณารอสักครู่!</span>
         <progress value={ffmpeg.loadProgress} max={1} />
       </div>
     );
@@ -30,7 +33,7 @@ export const Render: React.FC = observer(() => {
   if (!video) {
     return (
       <div>
-        <span>No video selected.</span>
+        <span>ไม่ได้เลือกวิดีโอ</span>
       </div>
     );
   }
@@ -194,10 +197,10 @@ export const Render: React.FC = observer(() => {
       <div className={styles.step}>
         <div className={styles.settings}>
           <div>
-            Resolution: {width}px x {height}px
+            ความละเอียด: {width}px x {height}px
           </div>
           <div>
-            Scale: {Math.round(scale * 100) / 100}
+            ขนาด: {Math.round(scale * 100) / 100}
             <Slider
               min={0.1}
               max={1}
@@ -220,22 +223,22 @@ export const Render: React.FC = observer(() => {
                   });
                 }}
               />
-              <span> Re-encode video (libx264) - Uncheck to copy codec (faster, larger file)</span>
+              <span> เข้ารหัสวิดีโอใหม่ (libx264) - ยกเลิกเพื่อคัดลอก codec (เร็วกว่า ไฟล์ใหญ่กว่า)</span>
             </label>
           </div>
         </div>
         <div className={styles.largeFileWarning}>
-          <h3>⚠️ File Too Large</h3>
+          <h3>⚠️ ไฟล์ใหญ่เกินไป</h3>
           <p>
-            Your file is <strong>{fileSizeGB.toFixed(2)} GB</strong>, exceeding the 2 GB limit.
+            ไฟล์ของคุณมีขนาด <strong>{fileSizeGB.toFixed(2)} GB</strong> เกินกว่าขีดจำกัด 2 GB
           </p>
           <p>
-            Chrome cannot process large files in memory due to WebAssembly and Memory limitations.
+            Chrome ไม่สามารถประมวลผลไฟล์ขนาดใหญ่ในหน่วยความจำได้ เนื่องจากข้อจำกัดของ WebAssembly
           </p>
           
           <div className={styles.commandSection}>
-            <h4>Solution: Use FFmpeg via Terminal</h4>
-            <p>Copy and run this command in your terminal:</p>
+            <h4>วิธีแก้ไข: ใช้ FFmpeg ผ่าน Terminal</h4>
+            <p>คัดลอกและรันคำสั่งนี้ใน terminal ของคุณ:</p>
             
             <div className={styles.commandBox}>
               <pre>{generateFfmpegCommand()}</pre>
@@ -250,13 +253,13 @@ export const Render: React.FC = observer(() => {
           </div>
 
           <div className={styles.instructions}>
-            <h4>Instructions:</h4>
+            <h4>วิธีการ:</h4>
             <ol>
-              <li>Install FFmpeg if needed: <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener noreferrer">ffmpeg.org/download.html</a></li>
-              <li>Open Terminal (Mac/Linux) or Command Prompt (Windows)</li>
-              <li>Navigate to your video file directory</li>
-              <li>Paste the command and press Enter</li>
-              <li>Wait for processing to complete, output.mp4 will be created</li>
+              <li>ติดตั้ง FFmpeg หากจำเป็น: <a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener noreferrer">ffmpeg.org/download.html</a></li>
+              <li>เปิด Terminal (Mac/Linux) หรือ Command Prompt (Windows)</li>
+              <li>ไปที่โฟลเดอร์ของไฟล์วิดีโอ</li>
+              <li>วางคำสั่งและกด Enter</li>
+              <li>รอจนการประมวลผลเสร็จสิ้น ไฟล์ output.mp4 จะถูกสร้างขึ้น</li>
             </ol>
           </div>
         </div>
@@ -270,11 +273,11 @@ export const Render: React.FC = observer(() => {
         <>
           <div className={styles.actions}>
             <button onClick={() => ffmpeg.cancel()}>
-              <span>Cancel</span>
+              <span>ยกเลิก</span>
             </button>
           </div>
           <div className={styles.info}>
-            <span>Running</span>
+            <span>กำลังประมวลผล</span>
             <progress value={ffmpeg.execProgress} max={1} />
             <pre>{ffmpeg.output}</pre>
           </div>
@@ -283,10 +286,10 @@ export const Render: React.FC = observer(() => {
         <>
           {!outputUrl && (<div className={styles.settings}>
             <div>
-              Resolution: {width}px x {height}px
+              ความละเอียด: {width}px x {height}px
             </div>
             <div>
-              Scale: {Math.round(scale * 100) / 100}
+              ขนาด: {Math.round(scale * 100) / 100}
               <Slider
                 min={0.1}
                 max={1}
@@ -309,14 +312,14 @@ export const Render: React.FC = observer(() => {
                     });
                   }}
                 />
-                <span> Re-encode video (libx264) - Uncheck to copy codec (faster, larger file)</span>
+                <span> เข้ารหัสวิดีโอใหม่ (libx264) - ยกเลิกเพื่อคัดลอก codec (เร็วกว่า ไฟล์ใหญ่กว่า)</span>
               </label>
             </div>
           </div>
           )}
           <div className={styles.actions}>
             <button onClick={crop}>
-              <span>Render MP4</span>
+              <span>ส่งออก MP4</span>
             </button>
             {outputUrl && (
               <a
@@ -325,7 +328,7 @@ export const Render: React.FC = observer(() => {
                 className={clsx('button', styles.download)}
               >
                 <BsDownload />
-                <span>Download</span>
+                <span>ดาวน์โหลด</span>
               </a>
             )}
           </div>
@@ -336,10 +339,20 @@ export const Render: React.FC = observer(() => {
           <video src={outputUrl} controls />
         </div>
       )}
+
+      {/* Google AdSense */}
+      {adsenseClient && adsenseSlot && (
+        <ins className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client={adsenseClient}
+          data-ad-slot={adsenseSlot}
+          data-ad-format="autorelaxed"></ins>
+      )}
+
       {!!ffmpeg.log && (
         <div className={styles.info}>
           <button onClick={() => setLogVisible(value => !value)}>
-            {logVisible ? 'Hide log' : 'Show log'}
+            {logVisible ? 'ซ่อน log' : 'แสดง log'}
           </button>
           {logVisible && <pre>{ffmpeg.log}</pre>}
         </div>

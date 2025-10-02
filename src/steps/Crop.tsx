@@ -20,7 +20,7 @@ export const Crop: React.FC = observer(() => {
   if (!video) {
     return (
       <div>
-        <span>No video selected.</span>
+        <span>ไม่ได้เลือกวิดีโอ</span>
       </div>
     );
   }
@@ -30,7 +30,7 @@ export const Crop: React.FC = observer(() => {
       <div className={styles.controls}>
         <div>
           <button
-            title={mainStore.transform.mute ? 'Unmute' : 'Mute'}
+            title={mainStore.transform.mute ? 'เปิดเสียง' : 'ปิดเสียง'}
             onClick={() => {
               runInAction(() => {
                 const mute = !mainStore.transform.mute;
@@ -45,7 +45,7 @@ export const Crop: React.FC = observer(() => {
             {mainStore.transform.mute ? <BsVolumeMute /> : <BsVolumeUp />}
           </button>
           <button
-            title="Flip horizontally"
+            title="พลิกแนวนอน"
             onClick={() => {
               runInAction(() => {
                 const { flipH, area } = mainStore.transform;
@@ -67,7 +67,7 @@ export const Crop: React.FC = observer(() => {
             <BsSymmetryVertical />
           </button>
           <button
-            title="Flip vertically"
+            title="พลิกแนวตั้ง"
             onClick={() => {
               runInAction(() => {
                 const { flipV, area } = mainStore.transform;
@@ -94,7 +94,7 @@ export const Crop: React.FC = observer(() => {
             onClick={() => {
               mainStore.reset();
             }}
-            title="Reset"
+            title="รีเซ็ต"
           >
             <BsArrowCounterclockwise />
           </button>
@@ -105,7 +105,7 @@ export const Crop: React.FC = observer(() => {
                 mainStore.step = 2;
               });
             }}
-            title="Confirm"
+            title="ยืนยัน"
           >
             <BsCheck />
           </button>
